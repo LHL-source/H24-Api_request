@@ -23,8 +23,13 @@ addbutton.addEventListener('click', (event) => {
             textInput_1.value = ''; //w? not yet
         }; //async
         postNewTask();
-        getAllData();
+        makeList(textInput_1.value); //w?y
         /*end function new task------------------*/
+
+        /*start get Post-------------------------------*/
+        //getAllData(); //getPOST W? not yet
+        /*end get Post-------------------------------*/
+
     }) //eventlist
     /*end : eventlistener button add---------------------------------------*/
 
@@ -39,46 +44,65 @@ addbutton.addEventListener('click', (event) => {
 /*getData :async await works ? not yet----------------------------------------- */
 /*why not ? it get the description and the _id, de aantal rijen worden gemaakt op scherm ongeveer 10stuks,
 but does not display on the user screen*/
+const getDataOnDom = async(doek) => {
 
-//const getDataOnDom = async(doek) => {
+        //console.log('entering functin getData');/W? yes good job
+        console.log(" getAllData  ", getAllData()); //W?y
+        const list = await getAllData();
+        console.log('list: ', list); //W?y
 
-//console.log('entering functin getData'); //W? yes good job /
-//const list = await getAllData();
-//console.log('list: ', list); //W?y
+        var loadList_1 = list.map((eachLoadList) => {
 
-//var loadList_1 = list.map((eachLoadList) => {
+            console.log('eachLoadList after .map', eachLoadList); //W? yes
+            console.log('eachLoadList.descrip :   ', eachLoadList.description); //w ? yes
+            const test_eachLoadList_desc = eachLoadList.description;
+            console.log('test_eachLoadList_desc:', test_eachLoadList_desc)
+            console.log('eachLoadList_id :', eachLoadList._id);
+            console.log('loadList_1', loadList_1); // w ? nee
 
-//   console.log('eachLoadList after .map', eachLoadList); //W? yes
-//    console.log('eachLoadList.descrip :   ', eachLoadList.description); //w ? yes
-//   const test_eachLoadList_desc = eachLoadList.description;
-//   console.log('test_eachLoadList_desc:', test_eachLoadList_desc)
-//   console.log('eachLoadList_id :', eachLoadList._id);
-//   console.log('loadList_1', loadList_1); // w ? nee
+            //getlist1(); //eachLoadList w?nee want eachLoadList is function
+            //scope niet bereikbaar voor global scope oplossing? hieronder aanmaken newLi , newInput enz
 
+            const container_Ul = document.querySelector('#containerUl');
+            const newLi = document.createElement('li');
+            const newLiAppContUl = container_Ul.appendChild(newLi);
 
-//}); //loadList_1
-//console.log('loadList_1 after map', loadList_1); //W? not yet undefined
+            const newInput = document.createElement('input');
+            const newInputApp_newLi = newLi.appendChild(newInput);
+            newInput.innerHTML = eachLoadList.description;
+            //einde newLi en newInput
 
-//const loadList_2 = await loadList_1 //getData
-//console.log('loadList_2 ', loadList_2); //w? not yet undefined
-//return loadList_2
+            /*start make delete btn-----------------------*/
+            const newDelBtn = document.createElement('button'); //W?y
+            newLi.appendChild(newDelBtn); //w?y
+            newDelBtn.setAttribute('id', 'delBtn'); //w?y
+            newDelBtn.textContent = "delete btn"; // w? not yet , should be a icon trash
+            newDelBtn.setAttribute('type', 'submit');
+            /*end makedelete btn------------------------*/
 
-//} //getDataOnDom
+        }); //loadList_1
+        console.log('loadList_1 after map', loadList_1); //W? not yet undefined
 
-//const getDataOnDom_1 = getDataOnDom();
-//console.log('getDataOnDom_1', getDataOnDom_1); //w? not yet
+        const loadList_2 = await loadList_1 //getData
+        console.log('loadList_2 ', loadList_2); //w? not yet undefined
+        return loadList_2
+
+    } //getDataOnDom
+
+const getDataOnDom_1 = getDataOnDom();
+console.log('getDataOnDom_1', getDataOnDom_1); //w? not yet
 
 /*end getDataOnDom, async await ----------------------------------------------------------*/
 
 /* start eventlistener to newDelBtn , lees uitde eachLoadList._id
  plak de _id aan de url (zie postman) en plaats in de fetch async await*/
-//newDelBtn.addEventListener('click', (eventDelBtn) => {
-//console.log('entering eventlistener newDelBtn', eventDelBtn);
+newDelBtn.addEventListener('click', (eventDelBtn) => {
+    console.log('entering eventlistener newDelBtn', eventDelBtn);
 
-//console.log('eachLoadList._id', eachLoadList._id);
+    console.log('eachLoadList._id', eachLoadList._id);
 
 
-//});
+});
 /*end eventlistener delete btn----------------------------------------------*/
 
 

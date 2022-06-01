@@ -49,39 +49,39 @@ const itemPost = async(aItem) => {
         ;
         // getAllData();
 
-        //const getAllData_1 = getAllData(); //w/ yes
-        //console.log("getAllData_1 : ", getAllData_1);
+        // const getAllData_1 = getAllData(); //w/ yes
+        // console.log("getAllData_1 : ", getAllData_1);
         /*end fetch loadlist-------------------------------------------------*/
 
 
         /*start delete request W? yes good job*/
-        // const baseUrl = "http://localhost:3000/";
-        // const eachLoadList_Id = "2de9529a-74b8-47be-a2f4-8ad6aea52213";
-        //  const noWhiteSpace = eachLoadList_Id.replace(/\s/g, '');
-        //  console.log("noWhiteSpace", noWhiteSpace);
-        //  const result = baseUrl.concat(noWhiteSpace);
-        //  console.log('result:  ', result);
+        const baseUrl = "http://localhost:3000/";
+        const eachLoadList_Id = "2de9529a-74b8-47be-a2f4-8ad6aea52213";
+        const noWhiteSpace = eachLoadList_Id.replace(/\s/g, '');
+        console.log("noWhiteSpace", noWhiteSpace);
+        const result = baseUrl.concat(noWhiteSpace);
+        console.log('result:  ', result);
 
-        // var myHeaders = new Headers();
-        //  myHeaders.append("Content-Type", "application/json");
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
 
-        //  var raw = "";
+        var raw = "";
 
-        //  var requestOptions = {
-        //      method: 'DELETE',
-        //      headers: myHeaders,
-        //      body: raw,
-        //      redirect: 'follow'
-        //  };
+        var requestOptions = {
+            method: 'DELETE',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
 
-        //const deleteData = async(delData) => {
-        //        try {
-        //            const delResponse = await fetch(result, requestOptions)
-        //       } /*try*/
-        //       catch (err) {
-        //           console.erro(err)
-        //} //catch
-        // } //async
+        const deleteData = async(delData) => {
+                try {
+                    const delResponse = await fetch(result, requestOptions)
+                } /*try*/
+                catch (err) {
+                    console.erro(err)
+                } //catch
+            } //async
 
         /*end delete request*/
 

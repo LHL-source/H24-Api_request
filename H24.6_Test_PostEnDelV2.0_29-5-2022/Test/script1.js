@@ -45,3 +45,15 @@ const deleteData = async(delData) => {
 
 deleteData();
 /*end delete request*/
+
+/*hieronder van script.js idem*/
+/*kladblok-----------------------------------------------------------*/
+/* start eventlistener to newDelBtn */
+//newDelBtn.addEventListener('click', (eventDelBtn) => {
+//  console.log('entering eventlistener newDelBtn', eventDelBtn);
+
+//});
+/*end eventlistener delete btn----------------------------------------------*/
+
+
+/*einde kladblok*/

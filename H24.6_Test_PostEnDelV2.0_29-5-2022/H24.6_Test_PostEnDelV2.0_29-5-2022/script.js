@@ -3,7 +3,7 @@ const addbutton = document.querySelector("#btnId") //W?y
 const textInput_1 = document.querySelector("#textInput"); //w? yes
 //const textInput_1value = document.querySelector("#textInput").value; //w?not yet
 const container_Ul = document.querySelector('#containerUl'); //w? y
-
+let getDelBtn = document.createElement('button');
 /*start: eventlistener button add-------------------------------------*/
 
 
@@ -58,25 +58,24 @@ const getDataOnDom = async(doek) => {
             theCheckBox.setAttribute('type', 'checkbox'); //w?y
 
             /* start eventlistener to newDelBtn , lees uit de eachLoadList._id-------------*/
-            getDelBtn.addEventListener('click', (eventDelBtn) => {
-                // call function deleteDAta, delete request w? y----------------------
-                const deleteTodo = (todoDomElement) => {
-                        const id = eachLoadList._id;
-                        const delDataTest = deleteData(id);
-                    } //delxxTodo
-                deleteTodo();
-                container_Ul.innerHTML = "";
-                getData_AfterDel();
-            }); //eventlis_delBtn
-            /*end eventlistener delete btn----------------------------------------------*/
-            /*start invoke getDataAfterDelete function */
+            //getDelBtn.addEventListener('click', (eventDelBtn) => {
+            // call function deleteDAta, delete request w? y----------------------
+            //const deleteTodo = (todoDomElement) => {
+            //      const id = eachLoadList._id;
+            //    const delDataTest = deleteData(id);
+            // } //delxxTodo
+            // deleteTodo();
 
+            // container_Ul.innerHTML = "";
+            /*start invoke getDataAfterDelete function----------------------------- */
+            // getData_AfterDel();
+            //}); //eventlis_delBtn
+            /*end eventlistener delete btn----------------------------------------------*/
 
             return list
         }); //loadList_1
-        //console.log('loadList_1 after map', loadList_1); //W? not yet undefined
+
         const loadList_2 = loadList_1 //getData
-            // console.log('loadList_2 ', loadList_2); //w? not yet undefined
         return loadList_2
     } //getDataOnDom
 
@@ -84,6 +83,30 @@ const getDataOnDom_1 = getDataOnDom();
 //console.log('getDataOnDom_1', getDataOnDom_1); //w? not yet
 
 /*end getDataOnDom, async await ----------------------------------------------------------*/
+
+/* start eventlistener to newDelBtn , lees uit de eachLoadList._id-------------*/
+getDelBtn.addEventListener('click', (eventDelBtn) => {
+    // call function deleteDAta, delete request w? y----------------------
+    console.log("entering getDelBtn eventlistener: ");
+    console.log("getDelBtn: ", getDelBtn);
+    console.log("eventDelBtn: ", eventDelBtn);
+
+
+    const deleteTodo = (todoDomElement) => {
+            const id = eachLoadList._id;
+
+            const delDataTest = deleteData(id);
+        } //delxxTodo
+    deleteTodo();
+
+    container_Ul.innerHTML = "";
+    /*start invoke getDataAfterDelete function----------------------------- */
+    //getData_AfterDel();
+    getDataOnDom();
+}); //eventlis_delBtn
+/*end eventlistener delete btn----------------------------------------------*/
+
+
 
 /*start makeList newLi W? yes good job----------------------------------------------------*/
 const makeList = (eachList) => {
@@ -96,9 +119,19 @@ const makeList = (eachList) => {
 
         const newDelBtn = document.createElement('button'); //W?y
         newLi.appendChild(newDelBtn); //w?y
-        newDelBtn.setAttribute('id', 'delBtn'); //w?y
-        newDelBtn.textContent = "delete btn"; // w? not yet , should be a icon trash
-        newDelBtn.setAttribute('type', 'submit');
+        // newDelBtn.setAttribute('id', 'delBtn'); //w?y
+        // newDelBtn.textContent = "delete btn"; // w? not yet , should be a icon trash
+        // newDelBtn.setAttribute('type', 'submit');
+
+        //make the trash icon
+        const makeClass = document.createAttribute("class");
+        makeClass.value = 'fa-solid fa-trash-can';
+        newDelBtn.setAttributeNode(makeClass);
+
+        //make a checkbox
+        const theCheckBox = document.createElement('input'); //W?y
+        newLi.appendChild(theCheckBox); //w ? y
+        theCheckBox.setAttribute('type', 'checkbox'); //w?y
 
         return newLi
     } //makeList
@@ -118,12 +151,13 @@ const getData_AfterDel = async(doek) => {
             const getNewInput = document.createElement('input'); //W?y
             const getNewInputApp_getNewLi = getNewLi.appendChild(getNewInput); //w?y
             getNewInput.value = (eachLoadList.description); //W? not yet
+
             //make a delete button
             let getDelBtn = document.createElement('button'); //W?y
             getNewLi.appendChild(getDelBtn); //w?y
             getDelBtn.setAttribute('id', 'getDelBtn'); //w?y
-            //getDelBtn.textContent = "get_delete_ btn"; // w?y
             getDelBtn.setAttribute('type', 'submit'); //w?y
+
             //make the trash icon
             const makeClass = document.createAttribute("class");
             makeClass.value = 'fa-solid fa-trash-can';
@@ -172,7 +206,8 @@ const getData_AfterDel = async(doek) => {
 4: test post catch w? not yet
 5: test get catch w? not yet
 6: ---trash icon w?yes  works good job 1juni
-7a:- delete dom input, button delete, checkbox W? not yet
+7a:--- delete dom input, button delete, checkbox W? not yet
 7b: na click op deletebtn: li enz gelijk laten verdwijnen (niet enkel na refresh van page)
 8: punt voor input mag weg
+9: ---na drukken van voeg toe button bijft de delete button letters ipv trash icon w? yes
 */

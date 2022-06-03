@@ -9,7 +9,7 @@ en gebruik die in variabel raw voor waarde van "description"
 const baseUrl = "http://localhost:3000";
 
 const itemPost = async(aItem) => {
-        console.log('aItem:', aItem);
+        // console.log('aItem:', aItem);
         const responsePost = await fetch(baseUrl, {
                 method: 'POST',
                 body: JSON.stringify(aItem), //json
@@ -70,7 +70,7 @@ var requestOptions = {
 
 const deleteData = async(id) => {
         const result = baseUrl_1.concat(id);
-        console.log('result:  ', result);
+        // console.log('result:  ', result);W? y
         try {
             const delResponse = await fetch(result, requestOptions)
                 //console.log('delResponse: ', delResponse);
@@ -79,9 +79,9 @@ const deleteData = async(id) => {
             console.error(err)
         }
     } //async
-console.log('delResponse: ', delResponse);
-/*end delete request-------------------------------------------------------*/
-/*kladblok 2-6-2022
-//const noWhiteSpace = eachLoadList_Id_1.replace(/\s/g, '');
-//console.log("noWhiteSpace", noWhiteSpace);
-*/
+    //console.log('delResponse: ', delResponse);
+    /*end delete request-------------------------------------------------------*/
+    /*kladblok 2-6-2022
+    //const noWhiteSpace = eachLoadList_Id_1.replace(/\s/g, '');
+    //console.log("noWhiteSpace", noWhiteSpace);
+    */
